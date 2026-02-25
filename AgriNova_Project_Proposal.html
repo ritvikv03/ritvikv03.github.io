@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriNova — Project Proposal for Company A</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1a0e;
+    --cream: #f5f0e8;
+    --paper: #faf7f2;
+    --forest: #1a3d1f;
+    --moss: #3a6b3f;
+    --sage: #6b9e70;
+    --wheat: #c9a84c;
+    --rust: #b54a2a;
+    --mist: #e8ede9;
+    --charcoal: #2c3a2d;
+    --gold: #d4a44c;
+    --light-gold: #f0e4c4;
+    --q1-color: #1a3d1f;
+    --q2-color: #8b3a1a;
+    --agent1-color: #1a3d6b;
+    --agent5-color: #3d1a6b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(15,26,14,0.08);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--forest);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: var(--wheat); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  /* ─── SECTIONS ─── */
+  section { scroll-margin-top: 60px; }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 100vh;
+    background: var(--forest);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 6rem 4rem;
+    overflow: hidden;
+  }
+
+  .cover-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    padding: 0.4rem 1rem;
+    margin-bottom: 2.5rem;
+    width: fit-content;
+  }
+
+  .cover-badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--wheat);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .cover-badge span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.3rem;
+    position: relative;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--wheat);
+  }
+
+  .cover-sub {
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.5);
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+    letter-spacing: 0.01em;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 4rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2.5rem;
+  }
+
+  .cover-meta-item label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 0.4rem;
+  }
+
+  .cover-meta-item span {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.8);
+    font-weight: 400;
+  }
+
+  .cover-decor {
+    position: absolute;
+    right: 6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .cover-decor svg { width: 400px; height: 400px; }
+
+  /* ─── CONTENT SECTIONS ─── */
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    line-height: 1.75;
+    max-width: 680px;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* ─── EXECUTIVE SUMMARY ─── */
+  #summary { background: var(--paper); }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5px;
+    background: rgba(15,26,14,0.1);
+    border: 1px solid rgba(15,26,14,0.1);
+    margin-bottom: 3rem;
+  }
+
+  .summary-stat {
+    background: var(--paper);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .summary-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--forest);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .summary-stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  .problem-block {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 3rem 3.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .problem-block::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    position: absolute;
+    top: -2rem;
+    left: 2rem;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .problem-block p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── QUESTIONS ─── */
+  #questions { background: var(--mist); }
+
+  .questions-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .question-card {
+    position: relative;
+    padding: 2.5rem;
+    background: white;
+    border: 1px solid rgba(15,26,14,0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .question-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(15,26,14,0.12);
+  }
+
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+
+  .question-card.q1::before { background: var(--q1-color); }
+  .question-card.q2::before { background: var(--q2-color); }
+
+  .question-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 1px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    font-weight: 500;
+  }
+
+  .question-card.q1 .question-tag { background: rgba(26,61,31,0.08); color: var(--q1-color); }
+  .question-card.q2 .question-tag { background: rgba(139,58,26,0.08); color: var(--q2-color); }
+
+  .question-scope {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .question-card.q1 .question-scope { color: var(--moss); }
+  .question-card.q2 .question-scope { color: var(--rust); }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .question-focus-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .question-focus-list li {
+    font-size: 0.82rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .question-focus-list li::before {
+    content: '→';
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .question-card.q1 .question-focus-list li::before { color: var(--moss); }
+  .question-card.q2 .question-focus-list li::before { color: var(--rust); }
+
+  /* ─── APPROACHES ─── */
+  #approaches { background: var(--paper); }
+
+  .approach-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(15,26,14,0.12);
+  }
+
+  .approach-tab {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    border-right: 1px solid rgba(15,26,14,0.12);
+    text-align: center;
+  }
+
+  .approach-tab:last-child { border-right: none; }
+  .approach-tab.active { background: var(--forest); color: white; }
+
+  .approach-panel { display: none; }
+  .approach-panel.active { display: block; }
+
+  /* ─── FLOW DIAGRAMS ─── */
+  .flow-container {
+    background: var(--forest);
+    padding: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .flow-container .flow-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .flow-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SINGLE AGENT FLOW ─── */
+  .flow-linear {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .flow-node {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .flow-node-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .flow-node-circle.user { background: rgba(201,168,76,0.2); border: 2px solid var(--wheat); }
+  .flow-node-circle.agent { background: rgba(106,158,112,0.2); border: 2px solid var(--sage); }
+  .flow-node-circle.process { background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.2); }
+  .flow-node-circle.output { background: rgba(201,168,76,0.25); border: 2px solid var(--wheat); }
+
+  .flow-node-label {
+    font-size: 0.68rem;
+    color: rgba(245,240,232,0.7);
+    text-align: center;
+    max-width: 80px;
+    line-height: 1.3;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .flow-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .flow-arrow svg { color: rgba(255,255,255,0.25); }
+
+  /* Multi agent flow */
+  .flow-multi {
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-multi-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .flow-multi-top {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .flow-orchestrator {
+    background: rgba(201,168,76,0.15);
+    border: 2px solid var(--wheat);
+    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .flow-orchestrator .fo-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    display: block;
+  }
+
+  .flow-orchestrator .fo-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .agents-grid::before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .agent-box {
+    border-radius: 4px;
+    padding: 0.9rem 0.7rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .agent-box::before {
+    content: '';
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    width: 1px;
+    height: 1rem;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .agent-box .ab-icon { font-size: 1.2rem; display: block; margin-bottom: 0.4rem; }
+  .agent-box .ab-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.6);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .agent-box .ab-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--cream);
+    display: block;
+  }
+
+  .agent-box.political { background: rgba(26,61,107,0.3); border: 1px solid rgba(26,61,107,0.6); }
+  .agent-box.economic { background: rgba(107,26,26,0.3); border: 1px solid rgba(107,26,26,0.6); }
+  .agent-box.social { background: rgba(26,107,77,0.3); border: 1px solid rgba(26,107,77,0.6); }
+  .agent-box.tech { background: rgba(77,26,107,0.3); border: 1px solid rgba(77,26,107,0.6); }
+  .agent-box.enviro { background: rgba(26,77,26,0.3); border: 1px solid rgba(26,77,26,0.6); }
+
+  .flow-outputs-row {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+  }
+
+  .flow-output-chip {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 2px;
+    padding: 0.4rem 0.9rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--wheat);
+    text-transform: uppercase;
+  }
+
+  /* ─── APPROACH DETAIL ─── */
+  .approach-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .detail-card {
+    background: var(--mist);
+    padding: 2rem;
+    border-left: 3px solid var(--sage);
+  }
+
+  .detail-card h4 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+
+  .detail-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .detail-card ul li {
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    line-height: 1.55;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .detail-card ul li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+
+  /* ─── COMPARISON TABLE ─── */
+  #comparison { background: var(--mist); }
+
+  .comparison-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+  }
+
+  .comparison-table th {
+    padding: 1rem 1.2rem;
+    text-align: left;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(15,26,14,0.12);
+    background: white;
+  }
+
+  .comparison-table th:first-child { color: var(--charcoal); }
+  .comparison-table th.col-q1 { color: var(--q1-color); background: rgba(26,61,31,0.04); }
+  .comparison-table th.col-q2 { color: var(--q2-color); background: rgba(139,58,26,0.04); }
+
+  .comparison-table td {
+    padding: 1rem 1.2rem;
+    font-size: 0.84rem;
+    color: var(--charcoal);
+    border-bottom: 1px solid rgba(15,26,14,0.06);
+    vertical-align: top;
+    line-height: 1.6;
+    background: white;
+  }
+
+  .comparison-table td.col-q1 { background: rgba(26,61,31,0.02); }
+  .comparison-table td.col-q2 { background: rgba(139,58,26,0.02); }
+
+  .comparison-table td.criterion {
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--ink);
+    background: rgba(245,240,232,0.8);
+  }
+
+  .tag-positive {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    background: rgba(26,61,31,0.08);
+    color: var(--forest);
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 1px;
+    margin-right: 0.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .tag-scope {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    background: rgba(139,58,26,0.08);
+    color: var(--rust);
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 1px;
+  }
+
+  /* ─── USER JOURNEY ─── */
+  #journey { background: var(--paper); }
+
+  .journey-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(15,26,14,0.12);
+  }
+
+  .journey-tab {
+    flex: 1;
+    padding: 0.9rem 1rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--charcoal);
+    transition: all 0.2s;
+    border-right: 1px solid rgba(15,26,14,0.12);
+    text-align: center;
+  }
+
+  .journey-tab:last-child { border-right: none; }
+  .journey-tab.active.j1 { background: var(--q1-color); color: white; }
+  .journey-tab.active.j2 { background: var(--q2-color); color: white; }
+  .journey-tab.active.j3 { background: var(--agent1-color); color: white; }
+  .journey-tab.active.j4 { background: var(--agent5-color); color: white; }
+
+  .journey-panel { display: none; }
+  .journey-panel.active { display: block; }
+
+  /* The actual user journey step visual */
+  .journey-flow {
+    padding: 3rem;
+    background: #0f1a0e;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .journey-flow .jf-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+  }
+
+  .journey-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    overflow-x: auto;
+  }
+
+  .journey-step {
+    flex-shrink: 0;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .js-icon-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    position: relative;
+  }
+
+  .js-step-num {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--wheat);
+    color: var(--ink);
+    font-size: 0.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .js-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .js-desc {
+    font-size: 0.62rem;
+    color: rgba(245,240,232,0.45);
+    text-align: center;
+    line-height: 1.4;
+    font-family: 'DM Mono', monospace;
+    max-width: 130px;
+  }
+
+  .journey-connector {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.2rem;
+    padding: 0 0.25rem;
+  }
+
+  .jc-line {
+    width: 30px;
+    height: 1px;
+  }
+
+  .jc-arrow {
+    font-size: 0.7rem;
+  }
+
+  /* output box at end of journey */
+  .journey-output {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .jo-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wheat);
+    margin-bottom: 1.2rem;
+  }
+
+  .jo-outputs {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .jo-output-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 2px;
+    padding: 0.6rem 1rem;
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .jo-output-item .joi-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  .jo-output-item .joi-text { font-size: 0.78rem; color: var(--cream); line-height: 1.4; }
+  .jo-output-item .joi-text strong { display: block; font-weight: 600; margin-bottom: 0.15rem; font-size: 0.8rem; }
+
+  /* Agents sub-flow for multi-agent panels */
+  .journey-agents-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+  }
+
+  .ja-box {
+    flex: 1;
+    max-width: 140px;
+    border-radius: 3px;
+    padding: 0.9rem 0.6rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .ja-box::before {
+    content: '↓';
+    position: absolute;
+    top: -1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .ja-icon { font-size: 1.1rem; display: block; margin-bottom: 0.3rem; }
+  .ja-name { font-size: 0.68rem; font-weight: 600; color: var(--cream); display: block; margin-bottom: 0.2rem; }
+  .ja-sources { font-size: 0.58rem; color: rgba(245,240,232,0.45); font-family: 'DM Mono', monospace; line-height: 1.3; }
+
+  /* ─── DELIVERABLES ─── */
+  #deliverables { background: var(--mist); }
+
+  .deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(15,26,14,0.08);
+    border: 1px solid rgba(15,26,14,0.08);
+  }
+
+  .deliverable-item {
+    background: white;
+    padding: 2rem;
+  }
+
+  .di-phase {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .di-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+
+  .di-desc {
+    font-size: 0.8rem;
+    color: var(--charcoal);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .di-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* ─── TIMELINE ─── */
+  #timeline { background: var(--forest); }
+  #timeline .section-title { color: var(--cream); }
+  #timeline .section-lead { color: rgba(245,240,232,0.6); }
+  #timeline .section-label { color: var(--wheat); }
+  #timeline .section-label::before { background: var(--wheat); }
+
+  .timeline-track {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .timeline-phases {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline-phase {
+    padding-top: 1rem;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .timeline-phase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--wheat);
+    border: 3px solid var(--forest);
+    z-index: 2;
+  }
+
+  .timeline-phase-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--wheat);
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .timeline-phase-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-phase-weeks {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.35);
+    text-align: center;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: rgba(245,240,232,0.9);
+  }
+
+  .footer-brand span { color: var(--wheat); }
+
+  .footer-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(245,240,232,0.3);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* scroll progress */
+  .progress-bar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: 2px;
+    background: var(--wheat);
+    z-index: 99;
+    transition: width 0.1s;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .questions-container { grid-template-columns: 1fr; }
+    .approach-details { grid-template-columns: 1fr; }
+    .deliverables-grid { grid-template-columns: 1fr 1fr; }
+    .timeline-phases { grid-template-columns: repeat(3, 1fr); }
+    .cover { padding: 7rem 2rem 3rem; }
+    .section-inner { padding: 4rem 1.5rem; }
+    .cover-decor { display: none; }
+    .cover-meta { gap: 2rem; flex-wrap: wrap; }
+    .agents-grid { grid-template-columns: repeat(3, 1fr); }
+    .summary-grid { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Agri<span>Nova</span></div>
+  <ul class="nav-links">
+    <li><a href="#summary">Overview</a></li>
+    <li><a href="#questions">Questions</a></li>
+    <li><a href="#approaches">Approaches</a></li>
+    <li><a href="#journey">User Journey</a></li>
+    <li><a href="#deliverables">Deliverables</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════ COVER ═══ -->
+<section class="cover">
+  <div class="cover-grain"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-decor">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="180" stroke="white" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="130" stroke="white" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="80" stroke="white" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="30" stroke="white" stroke-width="0.5"/>
+      <line x1="200" y1="20" x2="200" y2="380" stroke="white" stroke-width="0.3"/>
+      <line x1="20" y1="200" x2="380" y2="200" stroke="white" stroke-width="0.3"/>
+      <line x1="73" y1="73" x2="327" y2="327" stroke="white" stroke-width="0.3"/>
+      <line x1="327" y1="73" x2="73" y2="327" stroke="white" stroke-width="0.3"/>
+      <circle cx="200" cy="20" r="4" fill="white"/>
+      <circle cx="200" cy="380" r="4" fill="white"/>
+      <circle cx="20" cy="200" r="4" fill="white"/>
+      <circle cx="380" cy="200" r="4" fill="white"/>
+      <circle cx="73" cy="73" r="4" fill="white"/>
+      <circle cx="327" cy="327" r="4" fill="white"/>
+      <circle cx="327" cy="73" r="4" fill="white"/>
+      <circle cx="73" cy="327" r="4" fill="white"/>
+    </svg>
+  </div>
+
+  <div class="cover-badge">
+    <div class="cover-badge-dot"></div>
+    <span>Confidential Project Proposal · February 2026</span>
+  </div>
+
+  <h1>Agri<em>Nova</em></h1>
+  <h1>AI-Powered PESTEL</h1>
+  <h1>Intelligence Platform</h1>
+  <p class="cover-sub">Strategic Foresight for European Agricultural Machinery</p>
+
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Prepared for</label>
+      <span>Company A — European Agricultural Machinery Division</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Geographic focus</label>
+      <span>European Agricultural Markets</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Prepared by</label>
+      <span>AgriNova Strategy Team</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Project duration</label>
+      <span>10 Weeks · Strictly Confidential</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ EXECUTIVE SUMMARY ═══ -->
+<section id="summary">
+  <div class="section-inner">
+    <div class="section-label">01 — Executive Summary</div>
+    <h2 class="section-title fade-up">The intelligence gap<br>is a strategic liability.</h2>
+    <p class="section-lead fade-up">European agricultural machinery companies face a fundamental challenge: the macro-environmental forces shaping farmer behavior and equipment demand are increasingly complex, fast-moving, and deeply interconnected. Traditional approaches to market intelligence are no longer sufficient to anticipate where the European farmer is heading.</p>
+
+    <div class="summary-grid fade-up">
+      <div class="summary-stat">
+        <span class="summary-stat-num">68+</span>
+        <span class="summary-stat-label">European data sources to monitor</span>
+      </div>
+      <div class="summary-stat">
+        <span class="summary-stat-num">6</span>
+        <span class="summary-stat-label">PESTEL dimensions to track simultaneously</span>
+      </div>
+      <div class="summary-stat">
+        <span class="summary-stat-num">10</span>
+        <span class="summary-stat-label">Weeks to full platform delivery</span>
+      </div>
+    </div>
+
+    <div class="problem-block fade-up">
+      <p>AgriNova is an AI-powered strategic foresight platform designed to systematically detect, classify, and evaluate emerging macro-environmental signals across political, economic, social, technological, environmental, and legal dimensions — translating raw European intelligence into actionable strategic frameworks that directly inform Company A's marketing, R&amp;D, and M&amp;A decisions.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="fade-up">
+      <div style="background: var(--mist); padding: 1.8rem; border-left: 3px solid var(--moss);">
+        <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--moss); font-weight: 600; margin-bottom: 0.8rem;">The Strategic Gap</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--moss);">·</span>Critical signals scattered across 68+ sources in multiple European languages
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--moss);">·</span>No unified intelligence layer connecting macro-environmental forces to farmer behavior
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--moss);">·</span>Reactive analysis — market shifts detected after they occur, not before
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--moss);">·</span>External intelligence disconnected from internal strategy frameworks
+          </li>
+        </ul>
+      </div>
+      <div style="background: var(--mist); padding: 1.8rem; border-left: 3px solid var(--wheat);">
+        <h4 style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--wheat); font-weight: 600; margin-bottom: 0.8rem;">The AgriNova Proposition</h4>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--wheat);">·</span>Detect weak signals 12–24 months before they become market realities
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--wheat);">·</span>Unified intelligence layer across all six PESTEL dimensions, Europe-focused
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--wheat);">·</span>AI-powered NLP converts raw signals into strategic frameworks
+          </li>
+          <li style="font-size: 0.84rem; color: var(--charcoal); padding-left: 1rem; position: relative; line-height: 1.55;">
+            <span style="position: absolute; left: 0; color: var(--wheat);">·</span>Two complementary solution architectures — operational and strategic
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ RESEARCH QUESTIONS ═══ -->
+<section id="questions">
+  <div class="section-inner">
+    <div class="section-label">02 — Research Questions</div>
+    <h2 class="section-title fade-up">Two questions.<br>One European focus.</h2>
+    <p class="section-lead fade-up">The project is anchored by two distinct research questions. Both concern the European agricultural landscape — but they differ fundamentally in what they seek to anticipate. Each question maps to two solution architectures: a single unified agent and a six-specialist multi-agent system.</p>
+
+    <div class="questions-container">
+      <!-- Q1 -->
+      <div class="question-card q1 fade-up">
+        <span class="question-tag">Question 01</span>
+        <div class="question-scope">🌾 Farmer Behavioral Change</div>
+        <p class="question-text">"Given these challenges, how can artificial intelligence-driven analytics be used to detect, classify, and evaluate emerging technological advancements and macro-environmental signals in order to anticipate the future behavioral change of the farmer in Europe?"</p>
+        <div style="border-top: 1px solid rgba(15,26,14,0.08); padding-top: 1rem; margin-top: 1rem;">
+          <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--moss); margin-bottom: 0.6rem;">What this question asks</div>
+          <p style="font-size: 0.82rem; color: var(--charcoal); line-height: 1.65;">This question looks at the <strong>causal relationship</strong> between PESTEL factors and how individual European farmers change their decisions, practices, and purchasing behavior. When CAP subsidies shift, when input costs spike, when a new regulation lands — how does the farmer respond? Can we predict that response before it happens?</p>
+        </div>
+        <ul class="question-focus-list" style="margin-top: 1rem;">
+          <li>Cause-and-effect: PESTEL signals → farmer behavioral shifts</li>
+          <li>Anticipates changes in purchasing, investment, and adoption patterns</li>
+          <li>Enables Company A to get ahead of demand changes, not react to them</li>
+          <li>Feeds directly into marketing and product positioning strategy</li>
+        </ul>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card q2 fade-up">
+        <span class="question-tag">Question 02</span>
+        <div class="question-scope">📡 Industry Disruption &amp; Trends</div>
+        <p class="question-text">"Given these challenges, how can artificial intelligence-driven analytics be used to detect, classify, and evaluate emerging technological advancements and macro-environmental signals in order to anticipate future disruptions, align innovative strategies, and better address the evolving needs of farmers in Europe?"</p>
+        <div style="border-top: 1px solid rgba(15,26,14,0.08); padding-top: 1rem; margin-top: 1rem;">
+          <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.6rem;">What this question asks</div>
+          <p style="font-size: 0.82rem; color: var(--charcoal); line-height: 1.65;">This question widens the lens to the <strong>industry level</strong>. Rather than tracking individual farmer behavior, it asks: what structural forces are reshaping European agriculture as a whole? What disruptions are forming on the horizon — in technology, regulation, climate, or markets — and how should Company A's innovation strategy be aligned in response?</p>
+        </div>
+        <ul class="question-focus-list" style="margin-top: 1rem;">
+          <li>Industry-level signal detection: structural shifts, not individual reactions</li>
+          <li>Anticipates sector-wide disruptions before they reach market maturity</li>
+          <li>Aligns R&amp;D investment with where European agriculture is heading</li>
+          <li>Enables proactive innovation strategy and M&amp;A pipeline prioritisation</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Q x Approach matrix -->
+    <div style="margin-top: 3rem; background: white; border: 1px solid rgba(15,26,14,0.1); overflow: hidden;" class="fade-up">
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; background: var(--forest);">
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(255,255,255,0.08);"></div>
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(255,255,255,0.08); text-align: center;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.5); display: block; margin-bottom: 0.3rem;">Solution A</span>
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--cream);">Single Unified Agent</span>
+        </div>
+        <div style="padding: 1.2rem; text-align: center;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.5); display: block; margin-bottom: 0.3rem;">Solution B</span>
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--cream);">Six-Agent PESTEL Specialist System</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr; border-bottom: 1px solid rgba(15,26,14,0.06);">
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(15,26,14,0.06); background: rgba(26,61,31,0.04);">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--q1-color); letter-spacing: 0.04em; text-transform: uppercase; display: block; margin-bottom: 0.3rem;">Q1</span>
+          <span style="font-size: 0.75rem; color: var(--charcoal);">Farmer Behavioral Change</span>
+        </div>
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(15,26,14,0.06);">
+          <span style="font-size: 0.8rem; color: var(--charcoal); line-height: 1.55;">One agent monitors all six PESTEL dimensions simultaneously, surfacing signals that correlate with measurable shifts in European farmer purchasing, investment, and adoption decisions. Fast, conversational, suited to marketing teams.</span>
+        </div>
+        <div style="padding: 1.2rem;">
+          <span style="font-size: 0.8rem; color: var(--charcoal); line-height: 1.55;">Six specialist agents — one per PESTEL letter, each covering European markets — collaborate to produce deep causal analyses linking regulatory, economic, and social signals to predicted behavioral shifts at farm level.</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 200px 1fr 1fr;">
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(15,26,14,0.06); background: rgba(139,58,26,0.04);">
+          <span style="font-size: 0.72rem; font-weight: 700; color: var(--q2-color); letter-spacing: 0.04em; text-transform: uppercase; display: block; margin-bottom: 0.3rem;">Q2</span>
+          <span style="font-size: 0.75rem; color: var(--charcoal);">Industry Disruption &amp; Trends</span>
+        </div>
+        <div style="padding: 1.2rem; border-right: 1px solid rgba(15,26,14,0.06);">
+          <span style="font-size: 0.8rem; color: var(--charcoal); line-height: 1.55;">Single agent scans European agricultural industry signals — patent clusters, startup activity, regulatory shifts, climate stress — and surfaces emerging disruptions before they reach mainstream visibility. Best for innovation scouting.</span>
+        </div>
+        <div style="padding: 1.2rem;">
+          <span style="font-size: 0.8rem; color: var(--charcoal); line-height: 1.55;">Six specialist agents each track European industry-level signals within their PESTEL domain. Orchestrator synthesises findings into innovation alignment reports, R&amp;D roadmaps, and M&amp;A opportunity maps for strategic leadership.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ APPROACHES ═══ -->
+<section id="approaches">
+  <div class="section-inner">
+    <div class="section-label">03 — Solution Architectures</div>
+    <h2 class="section-title fade-up">How the platform works.</h2>
+    <p class="section-lead fade-up">Two complementary AI architectures — deployed on the same European data infrastructure — each with distinct trade-offs in speed, depth, and analytical complexity.</p>
+
+    <div class="approach-tabs fade-up">
+      <button class="approach-tab active" onclick="switchApproach('a1')">Solution A — Single Unified Agent</button>
+      <button class="approach-tab" onclick="switchApproach('a2')">Solution B — Six-Agent PESTEL Specialist System</button>
+    </div>
+
+    <!-- SOLUTION A: Single Agent -->
+    <div class="approach-panel active" id="panel-a1">
+      <div class="flow-container">
+        <div class="flow-grid-bg"></div>
+        <div class="flow-title">Architecture Overview — Single Unified Agent · European PESTEL Coverage</div>
+        <div class="flow-linear">
+          <div class="flow-node">
+            <div class="flow-node-circle user">👤</div>
+            <div class="flow-node-label">Company A analyst or manager</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle process">💬</div>
+            <div class="flow-node-label">Natural language query</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle agent">🤖</div>
+            <div class="flow-node-label">Unified PESTEL Agent</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle process">🗄️</div>
+            <div class="flow-node-label">European signal database</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle process">🧠</div>
+            <div class="flow-node-label">NLP synthesis &amp; scoring</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle process">📊</div>
+            <div class="flow-node-label">Strategy framework mapping</div>
+          </div>
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16" fill="none">
+              <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+              <polyline points="22,3 28,8 22,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div class="flow-node">
+            <div class="flow-node-circle output">📄</div>
+            <div class="flow-node-label">Insight report + dashboard</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pros / Cons for Solution A -->
+      <div class="approach-details">
+        <div class="detail-card" style="border-left-color: var(--moss);">
+          <h4 style="color: var(--moss);">✓ Pros</h4>
+          <ul>
+            <li>Fast response — 30 to 90 seconds per query, enabling real-time decision support</li>
+            <li>Low infrastructure cost — single model instance, simpler to deploy and maintain</li>
+            <li>Highly conversational — iterative follow-up questions retain full context across the session</li>
+            <li>Accessible to all Company A teams without deep analytical expertise</li>
+            <li>Suitable for daily operational monitoring and rapid signal triage</li>
+            <li>Lower development complexity means faster delivery within the 10-week window</li>
+          </ul>
+        </div>
+        <div class="detail-card" style="border-left-color: var(--rust);">
+          <h4 style="color: var(--rust);">✗ Cons</h4>
+          <ul>
+            <li>Depth is spread evenly across all six PESTEL dimensions — no specialist expertise per domain</li>
+            <li>Single context window limits the volume of signals it can reason over simultaneously</li>
+            <li>Cannot run parallel analyses — sequential processing only</li>
+            <li>Output quality depends heavily on query framing by the user</li>
+            <li>Not suited for board-level reports requiring deep dimensional sourcing and citation trails</li>
+            <li>Scaling to higher signal volumes may degrade response coherence</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION B: Six-Agent PESTEL System -->
+    <div class="approach-panel" id="panel-a2">
+      <div class="flow-container">
+        <div class="flow-grid-bg"></div>
+        <div class="flow-title">Architecture Overview — Six-Agent PESTEL Specialist System · Europe</div>
+        <div class="flow-multi">
+          <!-- Top row: User → Orchestrator → DB -->
+          <div class="flow-multi-top">
+            <div class="flow-node">
+              <div class="flow-node-circle user">👤</div>
+              <div class="flow-node-label">Strategic analyst / leadership team</div>
+            </div>
+            <div class="flow-arrow">
+              <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
+                <line x1="0" y1="8" x2="36" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                <polyline points="30,3 36,8 30,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="flow-orchestrator">
+              <span class="fo-label">Orchestrator Agent</span>
+              <span class="fo-title">🎯 Central AI Coordinator</span>
+            </div>
+            <div class="flow-arrow">
+              <svg width="40" height="16" viewBox="0 0 40 16" fill="none">
+                <line x1="0" y1="8" x2="36" y2="8" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+                <polyline points="30,3 36,8 30,13" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+              </svg>
+            </div>
+            <div class="flow-node">
+              <div class="flow-node-circle process">🗄️</div>
+              <div class="flow-node-label">European signal database (68+ sources)</div>
+            </div>
+          </div>
+
+          <!-- 6 PESTEL Agent boxes -->
+          <div class="agents-grid" style="grid-template-columns: repeat(6, 1fr);">
+            <div class="agent-box political">
+              <span class="ab-icon">🏛️</span>
+              <span class="ab-label">Agent P</span>
+              <span class="ab-name">Political</span>
+            </div>
+            <div class="agent-box economic">
+              <span class="ab-icon">📈</span>
+              <span class="ab-label">Agent E</span>
+              <span class="ab-name">Economic</span>
+            </div>
+            <div class="agent-box social">
+              <span class="ab-icon">👥</span>
+              <span class="ab-label">Agent S</span>
+              <span class="ab-name">Social</span>
+            </div>
+            <div class="agent-box tech">
+              <span class="ab-icon">⚙️</span>
+              <span class="ab-label">Agent T</span>
+              <span class="ab-name">Technological</span>
+            </div>
+            <div class="agent-box enviro">
+              <span class="ab-icon">🌿</span>
+              <span class="ab-label">Agent E</span>
+              <span class="ab-name">Environmental</span>
+            </div>
+            <div class="agent-box" style="background: rgba(80,60,20,0.3); border: 1px solid rgba(130,100,30,0.6);">
+              <span class="ab-icon">⚖️</span>
+              <span class="ab-label">Agent L</span>
+              <span class="ab-name">Legal</span>
+            </div>
+          </div>
+
+          <!-- Synthesis -->
+          <div style="text-align: center; margin-bottom: 1rem; position: relative; z-index: 1;">
+            <svg width="2" height="20" style="display: block; margin: 0 auto 0.5rem;">
+              <line x1="1" y1="0" x2="1" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+            </svg>
+            <div style="display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); border-radius: 3px; padding: 0.6rem 1.2rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--wheat); letter-spacing: 0.08em; text-transform: uppercase;">Orchestrator Synthesis &amp; Cross-Dimensional Reasoning</div>
+          </div>
+
+          <div class="flow-outputs-row">
+            <div class="flow-output-chip">Foresight Report</div>
+            <div class="flow-output-chip">SWOT Matrix</div>
+            <div class="flow-output-chip">Porter's 5 Forces</div>
+            <div class="flow-output-chip">Innovation Radar</div>
+            <div class="flow-output-chip">R&amp;D Alignment Brief</div>
+            <div class="flow-output-chip">M&amp;A Signal Map</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pros / Cons for Solution B -->
+      <div class="approach-details">
+        <div class="detail-card" style="border-left-color: var(--moss);">
+          <h4 style="color: var(--moss);">✓ Pros</h4>
+          <ul>
+            <li>Each agent develops genuine domain expertise — Political agent handles only EU agricultural policy signals, Legal agent only regulatory and compliance signals, etc.</li>
+            <li>Parallel processing — all six agents run simultaneously, dramatically cutting total analysis time for complex reports</li>
+            <li>Orchestrator can resolve contradictions between dimensions and surface cross-dimensional insights no single agent could detect</li>
+            <li>Output quality is significantly higher for strategic deliverables — board presentations, M&amp;A diligence, R&amp;D roadmaps</li>
+            <li>Scales naturally — adding a new data source only requires updating the relevant agent</li>
+          </ul>
+        </div>
+        <div class="detail-card" style="border-left-color: var(--rust);">
+          <h4 style="color: var(--rust);">✗ Cons</h4>
+          <ul>
+            <li>Significantly higher development complexity — seven coordinated components (six agents + orchestrator) versus one</li>
+            <li>Higher infrastructure cost — seven model instances running in parallel</li>
+            <li>Longer response time — 2 to 5 minutes per comprehensive report</li>
+            <li>More difficult to debug when agent outputs conflict or an agent underperforms</li>
+            <li>Risk of over-engineering within a 10-week delivery window — requires strong project discipline to scope correctly</li>
+            <li>Less conversational — suited to structured requests, not exploratory back-and-forth queries</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ COMPARISON ═══ -->
+<section id="comparison">
+  <div class="section-inner">
+    <div class="section-label">04 — Solution Comparison</div>
+    <h2 class="section-title fade-up">Choosing the right architecture for the right question.</h2>
+    <p class="section-lead fade-up">Both solutions run on identical underlying European data infrastructure. The choice of architecture depends on the analytical depth required, the intended user, and the output format needed.</p>
+
+    <div class="comparison-wrapper fade-up">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th class="col-q1">Q1 · Behavioral Change · Single Agent</th>
+            <th class="col-q1">Q1 · Behavioral Change · Six Agents</th>
+            <th class="col-q2">Q2 · Industry Disruption · Single Agent</th>
+            <th class="col-q2">Q2 · Industry Disruption · Six Agents</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="criterion">Primary user</td>
+            <td class="col-q1">Marketing &amp; product teams</td>
+            <td class="col-q1">Strategy &amp; planning leadership</td>
+            <td class="col-q2">Innovation scouting teams</td>
+            <td class="col-q2">C-suite &amp; board</td>
+          </tr>
+          <tr>
+            <td class="criterion">Response time</td>
+            <td class="col-q1">30–90 seconds</td>
+            <td class="col-q1">2–5 minutes</td>
+            <td class="col-q2">30–90 seconds</td>
+            <td class="col-q2">3–6 minutes</td>
+          </tr>
+          <tr>
+            <td class="criterion">Geographic scope</td>
+            <td class="col-q1"><span class="tag-positive">Europe</span></td>
+            <td class="col-q1"><span class="tag-positive">Europe</span></td>
+            <td class="col-q2"><span class="tag-positive">Europe</span></td>
+            <td class="col-q2"><span class="tag-positive">Europe</span></td>
+          </tr>
+          <tr>
+            <td class="criterion">Analysis depth</td>
+            <td class="col-q1">Balanced across all six PESTEL dimensions</td>
+            <td class="col-q1">Deep specialist expertise per PESTEL letter</td>
+            <td class="col-q2">Balanced, industry-level signal scanning</td>
+            <td class="col-q2">Deep dimensional synthesis with cross-agent reasoning</td>
+          </tr>
+          <tr>
+            <td class="criterion">Output format</td>
+            <td class="col-q1">Conversational chat + on-demand export</td>
+            <td class="col-q1">Curated multi-section foresight report</td>
+            <td class="col-q2">Conversational chat + disruption digest</td>
+            <td class="col-q2">Board-ready strategic presentation</td>
+          </tr>
+          <tr>
+            <td class="criterion">Key use cases</td>
+            <td class="col-q1">CAP impact briefings, farmer sentiment tracking, demand signal monitoring</td>
+            <td class="col-q1">Annual strategy review, behavioral prediction models, R&amp;D prioritisation</td>
+            <td class="col-q2">Emerging tech scanning, disruption alerts, weak signal detection</td>
+            <td class="col-q2">Innovation roadmap alignment, M&amp;A screening, structural trend analysis</td>
+          </tr>
+          <tr>
+            <td class="criterion">Development complexity</td>
+            <td class="col-q1">Low — single model instance</td>
+            <td class="col-q1">High — six agents + orchestrator coordination</td>
+            <td class="col-q2">Low — single model instance</td>
+            <td class="col-q2">Very high — six domain-tuned agents + synthesis layer</td>
+          </tr>
+          <tr>
+            <td class="criterion">10-week delivery risk</td>
+            <td class="col-q1"><span class="tag-positive">Low</span></td>
+            <td class="col-q1"><span class="tag-scope">Medium–High</span></td>
+            <td class="col-q2"><span class="tag-positive">Low</span></td>
+            <td class="col-q2"><span class="tag-scope">High</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background: var(--forest); color: var(--cream); padding: 2rem 2.5rem; margin-top: 2rem;" class="fade-up">
+      <p style="font-size: 0.9rem; line-height: 1.75; font-weight: 300;"><strong style="color: var(--wheat); font-weight: 600;">Recommendation:</strong> Given the 10-week delivery window, we recommend deploying Solution A (Single Unified Agent) as the primary deliverable — it answers both research questions with demonstrable output quality and manageable complexity. Solution B (Six-Agent PESTEL System) should be scoped as a post-delivery enhancement roadmap, with the architectural foundation laid during Phase 2 to enable a clean transition. Both architectures share the same data layer, so the investment in data infrastructure is fully reusable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ USER JOURNEY ═══ -->
+<section id="journey">
+  <div class="section-inner">
+    <div class="section-label">05 — User Journey</div>
+    <h2 class="section-title fade-up">From question to strategic action.</h2>
+    <p class="section-lead fade-up">Visualising how a Company A analyst moves from an initial prompt to a strategic output — across all four solution paths, each targeting European agricultural intelligence.</p>
+
+    <div class="journey-tabs fade-up">
+      <button class="journey-tab active j1" onclick="switchJourney('j1', this)">Q1 · Behavioral Change · Single Agent</button>
+      <button class="journey-tab j1" onclick="switchJourney('j2', this)">Q1 · Behavioral Change · Six Agents</button>
+      <button class="journey-tab j2" onclick="switchJourney('j3', this)">Q2 · Industry Disruption · Single Agent</button>
+      <button class="journey-tab j2" onclick="switchJourney('j4', this)">Q2 · Industry Disruption · Six Agents</button>
+    </div>
+
+    <!-- JOURNEY 1: Q1 + Single Agent -->
+    <div class="journey-panel active" id="journey-j1">
+      <div class="journey-flow">
+        <div class="jf-grid"></div>
+        <div style="position: relative; z-index: 1; margin-bottom: 1.5rem;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wheat);">Q1 + Solution A — European Farmer Behavioral Change · Single Unified Agent</span>
+        </div>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.15); border: 2px solid var(--wheat);">
+              👤
+              <div class="js-step-num">1</div>
+            </div>
+            <div class="js-name">User logs into AgriNova</div>
+            <div class="js-desc">Marketing analyst, R&D lead, or product manager at Company A</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              💬
+              <div class="js-step-num">2</div>
+            </div>
+            <div class="js-name">Submits behavioral query</div>
+            <div class="js-desc">"How will CAP 2027 subsidy changes affect European farmer investment in precision equipment?"</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              🧠
+              <div class="js-step-num">3</div>
+            </div>
+            <div class="js-name">Agent parses intent</div>
+            <div class="js-desc">Identifies policy signal (CAP), behavioral outcome (investment), PESTEL mapping (Political → Economic)</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,120,0.2); border: 2px solid rgba(150,150,220,0.5);">
+              🗄️
+              <div class="js-step-num">4</div>
+            </div>
+            <div class="js-name">European signal database query</div>
+            <div class="js-desc">Semantic search across 68+ European sources — DG AGRI, COPA-COGECA, CEMA, Eurostat, EUR-Lex</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,120,0.2); border: 2px solid rgba(150,150,220,0.5);">
+              📊
+              <div class="js-step-num">5</div>
+            </div>
+            <div class="js-name">NLP synthesis &amp; PESTEL mapping</div>
+            <div class="js-desc">Sentiment scoring, causal chain extraction, behavioral prediction, SWOT implications</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              📄
+              <div class="js-step-num">6</div>
+            </div>
+            <div class="js-name">Structured output in chat</div>
+            <div class="js-desc">PESTEL breakdown, behavioral forecast, confidence scores, citations, exportable brief</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              🔄
+              <div class="js-step-num">7</div>
+            </div>
+            <div class="js-name">Iterative follow-up</div>
+            <div class="js-desc">"Now show me how this shifts for farms under 50ha" — full session context retained</div>
+          </div>
+        </div>
+        <div class="journey-output">
+          <div class="jo-title">Final Outputs — Q1 · Single Agent</div>
+          <div class="jo-outputs">
+            <div class="jo-output-item">
+              <span class="joi-icon">📋</span>
+              <div class="joi-text"><strong>Behavioral Intelligence Brief</strong>European farmer response predictions mapped to specific PESTEL trigger signals</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🎯</span>
+              <div class="joi-text"><strong>SWOT Implications</strong>Signals mapped to strategic opportunities and risks for Company A</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">⚡</span>
+              <div class="joi-text"><strong>Priority Signal Alerts</strong>High-volatility signals requiring immediate marketing or product response</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">📥</span>
+              <div class="joi-text"><strong>Export</strong>PDF or DOCX briefing for internal distribution to product and sales teams</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNEY 2: Q1 + Six Agents -->
+    <div class="journey-panel" id="journey-j2">
+      <div class="journey-flow">
+        <div class="jf-grid"></div>
+        <div style="position: relative; z-index: 1; margin-bottom: 1.5rem;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wheat);">Q1 + Solution B — European Farmer Behavioral Change · Six-Agent PESTEL Specialist System</span>
+        </div>
+        <div class="journey-steps" style="margin-bottom: 1.5rem;">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.15); border: 2px solid var(--wheat);">
+              👤
+              <div class="js-step-num">1</div>
+            </div>
+            <div class="js-name">Strategic analyst submits request</div>
+            <div class="js-desc">"Generate a 2027 behavioral foresight report on European farmers' response to electrification mandates — board format"</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              🎯
+              <div class="js-step-num">2</div>
+            </div>
+            <div class="js-name">Orchestrator parses &amp; dispatches</div>
+            <div class="js-desc">Identifies scope, behavioral outcome, horizon — routes to all six PESTEL specialist agents simultaneously</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,80,0.3); border: 2px solid rgba(200,200,200,0.3);">
+              ⚡
+              <div class="js-step-num">3</div>
+            </div>
+            <div class="js-name">Parallel agent execution</div>
+            <div class="js-desc">All six PESTEL agents query their dedicated European source sets simultaneously</div>
+          </div>
+        </div>
+        <div class="journey-agents-row">
+          <div class="ja-box political">
+            <span class="ja-icon">🏛️</span>
+            <span class="ja-name">Political (P)</span>
+            <span class="ja-sources">DG AGRI · COPA-COGECA · EP AGRI · EUR-Lex</span>
+          </div>
+          <div class="ja-box economic">
+            <span class="ja-icon">📈</span>
+            <span class="ja-name">Economic (E)</span>
+            <span class="ja-sources">CEMA · Eurostat · Matif Futures · EIB · Rabobank</span>
+          </div>
+          <div class="ja-box social">
+            <span class="ja-icon">👥</span>
+            <span class="ja-name">Social (S)</span>
+            <span class="ja-sources">Agrarheute · Profi · Eurobarometer · DG AGRI Rural Dev</span>
+          </div>
+          <div class="ja-box tech">
+            <span class="ja-icon">⚙️</span>
+            <span class="ja-name">Technological (T)</span>
+            <span class="ja-sources">Espacenet · ArXiv · OpenAIRE · Crunchbase EU · AEF</span>
+          </div>
+          <div class="ja-box enviro">
+            <span class="ja-icon">🌿</span>
+            <span class="ja-name">Environmental (E)</span>
+            <span class="ja-sources">EEA · Copernicus · DG CLIMA · Farm to Fork · Green Deal</span>
+          </div>
+          <div class="ja-box" style="background: rgba(80,60,20,0.3); border: 1px solid rgba(130,100,30,0.6);">
+            <span class="ja-icon">⚖️</span>
+            <span class="ja-name">Legal (L)</span>
+            <span class="ja-sources">EUR-Lex · EFSA · Machinery Directive · Stage V Reg</span>
+          </div>
+        </div>
+        <div class="journey-steps" style="margin-top: 1.5rem; justify-content: center;">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              🎯
+              <div class="js-step-num">4</div>
+            </div>
+            <div class="js-name">Orchestrator synthesises</div>
+            <div class="js-desc">Resolves cross-agent conflicts, weights confidence, links causal chains across PESTEL dimensions</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              📑
+              <div class="js-step-num">5</div>
+            </div>
+            <div class="js-name">Strategy frameworks generated</div>
+            <div class="js-desc">SWOT, Porter's 5 Forces, NOISE Analysis — auto-populated from behavioral signal synthesis</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              📊
+              <div class="js-step-num">6</div>
+            </div>
+            <div class="js-name">Board-ready report delivered</div>
+            <div class="js-desc">Multi-section foresight document with per-PESTEL deep-dives and behavioral forecast models</div>
+          </div>
+        </div>
+        <div class="journey-output">
+          <div class="jo-title">Final Outputs — Q1 · Six-Agent System</div>
+          <div class="jo-outputs">
+            <div class="jo-output-item">
+              <span class="joi-icon">📑</span>
+              <div class="joi-text"><strong>Full Behavioral Foresight Report</strong>Dimensional analysis linking PESTEL signals to predicted European farmer behavioral shifts</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🔷</span>
+              <div class="joi-text"><strong>Strategy Frameworks</strong>SWOT, Porter's 5 Forces, NOISE — auto-populated from cross-agent synthesis</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🎯</span>
+              <div class="joi-text"><strong>Behavioral Prediction Model</strong>Farmer segment responses mapped to scenario timelines with confidence bands</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">📥</span>
+              <div class="joi-text"><strong>Board Presentation Export</strong>PDF and PPTX formats ready for executive and board-level distribution</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNEY 3: Q2 + Single Agent -->
+    <div class="journey-panel" id="journey-j3">
+      <div class="journey-flow">
+        <div class="jf-grid"></div>
+        <div style="position: relative; z-index: 1; margin-bottom: 1.5rem;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wheat);">Q2 + Solution A — European Industry Disruption &amp; Trends · Single Unified Agent</span>
+        </div>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.15); border: 2px solid var(--wheat);">
+              👤
+              <div class="js-step-num">1</div>
+            </div>
+            <div class="js-name">Innovation scouting analyst</div>
+            <div class="js-desc">Monitors European agricultural industry for emerging technology and structural disruption signals</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              📡
+              <div class="js-step-num">2</div>
+            </div>
+            <div class="js-name">Submits disruption query</div>
+            <div class="js-desc">"What structural forces are reshaping European precision agriculture over the next 3 years — and where are the innovation gaps?"</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              🧠
+              <div class="js-step-num">3</div>
+            </div>
+            <div class="js-name">Agent maps to industry signals</div>
+            <div class="js-desc">Scans patent clusters, startup activity, regulatory pipeline, and research funding flows in European ag</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,120,0.2); border: 2px solid rgba(150,150,220,0.5);">
+              🔍
+              <div class="js-step-num">4</div>
+            </div>
+            <div class="js-name">Industry trend extraction</div>
+            <div class="js-desc">Patent velocity, funding rounds, regulatory trajectories, technology convergence identified</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,120,0.2); border: 2px solid rgba(150,150,220,0.5);">
+              ⚡
+              <div class="js-step-num">5</div>
+            </div>
+            <div class="js-name">Disruption scenario modelling</div>
+            <div class="js-desc">Weak signals amplified into structured industry disruption scenarios with horizon and probability weighting</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              📊
+              <div class="js-step-num">6</div>
+            </div>
+            <div class="js-name">Industry intelligence brief delivered</div>
+            <div class="js-desc">Disruption map, innovation gap analysis, and R&amp;D alignment recommendations for Company A</div>
+          </div>
+        </div>
+        <div class="journey-output">
+          <div class="jo-title">Final Outputs — Q2 · Single Agent</div>
+          <div class="jo-outputs">
+            <div class="jo-output-item">
+              <span class="joi-icon">🗺️</span>
+              <div class="joi-text"><strong>European Disruption Map</strong>Industry-level signals mapped to technology adoption curves and regulatory timelines</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">📡</span>
+              <div class="joi-text"><strong>Weak Signal Digest</strong>Early indicators of structural industry shifts — 12 to 36 month horizon</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🔬</span>
+              <div class="joi-text"><strong>Innovation Gap Analysis</strong>Unmet farmer needs and technology white spaces identified across European agriculture</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">💡</span>
+              <div class="joi-text"><strong>R&amp;D Alignment Brief</strong>Priority investment areas ranked by signal strength and strategic fit for Company A</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNEY 4: Q2 + Six Agents -->
+    <div class="journey-panel" id="journey-j4">
+      <div class="journey-flow">
+        <div class="jf-grid"></div>
+        <div style="position: relative; z-index: 1; margin-bottom: 1.5rem;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wheat);">Q2 + Solution B — European Industry Disruption &amp; Trends · Six-Agent PESTEL Specialist System</span>
+        </div>
+        <div class="journey-steps" style="margin-bottom: 1.5rem;">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.15); border: 2px solid var(--wheat);">
+              👤
+              <div class="js-step-num">1</div>
+            </div>
+            <div class="js-name">C-suite / strategy board</div>
+            <div class="js-desc">Requests European agricultural industry foresight to inform a 5-year innovation investment plan</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              🎯
+              <div class="js-step-num">2</div>
+            </div>
+            <div class="js-name">Orchestrator activates all six agents</div>
+            <div class="js-desc">Routes to all six PESTEL specialist agents — each focused on European industry-level disruption signals within their dimension</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(80,80,80,0.3); border: 2px solid rgba(200,200,200,0.3);">
+              🌿
+              <div class="js-step-num">3</div>
+            </div>
+            <div class="js-name">Six-agent parallel processing</div>
+            <div class="js-desc">Each agent deep-dives its European domain: policy, market data, research, patents, climate, regulation</div>
+          </div>
+        </div>
+        <div class="journey-agents-row">
+          <div class="ja-box political">
+            <span class="ja-icon">🏛️</span>
+            <span class="ja-name">Political (P)</span>
+            <span class="ja-sources">CAP reform · EU trade agreements · National ag policy shifts</span>
+          </div>
+          <div class="ja-box economic">
+            <span class="ja-icon">📈</span>
+            <span class="ja-name">Economic (E)</span>
+            <span class="ja-sources">CEMA market data · Eurostat · EIB financing · Farm income</span>
+          </div>
+          <div class="ja-box social">
+            <span class="ja-icon">👥</span>
+            <span class="ja-name">Social (S)</span>
+            <span class="ja-sources">Farmer demographics · Labor scarcity · Tech adoption attitudes</span>
+          </div>
+          <div class="ja-box tech">
+            <span class="ja-icon">⚙️</span>
+            <span class="ja-name">Technological (T)</span>
+            <span class="ja-sources">EPO patents · EU research grants · AgTech startup funding</span>
+          </div>
+          <div class="ja-box enviro">
+            <span class="ja-icon">🌿</span>
+            <span class="ja-name">Environmental (E)</span>
+            <span class="ja-sources">Green Deal · Copernicus climate · Nature Restoration Law</span>
+          </div>
+          <div class="ja-box" style="background: rgba(80,60,20,0.3); border: 1px solid rgba(130,100,30,0.6);">
+            <span class="ja-icon">⚖️</span>
+            <span class="ja-name">Legal (L)</span>
+            <span class="ja-sources">EFSA · Stage V · Machinery Directive · Pesticide bans</span>
+          </div>
+        </div>
+        <div class="journey-steps" style="margin-top: 1.5rem; justify-content: center;">
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              🔀
+              <div class="js-step-num">4</div>
+            </div>
+            <div class="js-name">Cross-dimensional synthesis</div>
+            <div class="js-desc">Orchestrator aligns six agent findings — identifies convergent disruption signals and cross-PESTEL dependencies</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(107,158,112,0.15); border: 2px solid var(--sage);">
+              🎯
+              <div class="js-step-num">5</div>
+            </div>
+            <div class="js-name">Innovation strategy alignment</div>
+            <div class="js-desc">Disruption signals mapped to Company A's innovation roadmap — R&amp;D gaps, M&amp;A targets, white spaces</div>
+          </div>
+          <div class="journey-connector"><div class="jc-line" style="background: rgba(255,255,255,0.1);"></div><div class="jc-arrow" style="color: rgba(255,255,255,0.25);">▶</div></div>
+          <div class="journey-step">
+            <div class="js-icon-wrap" style="background: rgba(201,168,76,0.2); border: 2px solid var(--wheat);">
+              📊
+              <div class="js-step-num">6</div>
+            </div>
+            <div class="js-name">Board-level industry foresight report</div>
+            <div class="js-desc">Strategic document with disruption scenarios, innovation alignment, and M&amp;A opportunity map</div>
+          </div>
+        </div>
+        <div class="journey-output">
+          <div class="jo-title">Final Outputs — Q2 · Six-Agent System</div>
+          <div class="jo-outputs">
+            <div class="jo-output-item">
+              <span class="joi-icon">🌿</span>
+              <div class="joi-text"><strong>European Industry Foresight Report</strong>Full six-dimensional analysis of structural forces reshaping European agriculture</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🔮</span>
+              <div class="joi-text"><strong>Disruption Scenario Models</strong>3–4 strategic scenarios with probability weighting and early warning trigger indicators</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🏗️</span>
+              <div class="joi-text"><strong>Innovation Roadmap Alignment</strong>R&amp;D priorities ranked against European industry signal strength and strategic fit for Company A</div>
+            </div>
+            <div class="jo-output-item">
+              <span class="joi-icon">🔭</span>
+              <div class="joi-text"><strong>M&amp;A Opportunity Map</strong>European AgTech companies flagged by PESTEL signal convergence across all six dimensions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ DELIVERABLES ═══ -->
+<section id="deliverables">
+  <div class="section-inner">
+    <div class="section-label">06 — Expected Deliverables</div>
+    <h2 class="section-title fade-up">What Company A receives.</h2>
+    <p class="section-lead fade-up">A modular, documented, and fully operational platform — from data ingestion through to strategic output generation.</p>
+
+    <div class="deliverables-grid fade-up">
+      <div class="deliverable-item">
+        <span class="di-icon">🗄️</span>
+        <span class="di-phase">Data Infrastructure</span>
+        <div class="di-title">PESTEL Signal Database</div>
+        <p class="di-desc">Fully built and populated database spanning all six PESTEL dimensions. 68+ curated European data sources, with a structured ingestion pipeline, quality scoring, and entity extraction ready for NLP processing.</p>
+      </div>
+      <div class="deliverable-item">
+        <span class="di-icon">🧠</span>
+        <span class="di-phase">AI Processing Layer</span>
+        <div class="di-title">NLP Classification Pipeline</div>
+        <p class="di-desc">Fully documented Python codebase for signal enrichment, sentiment scoring, entity recognition, topic clustering, and strategic framework mapping. Includes training scripts and evaluation metrics.</p>
+      </div>
+      <div class="deliverable-item">
+        <span class="di-icon">🤖</span>
+        <span class="di-phase">AI Solutions</span>
+        <div class="di-title">Two Solution Architectures</div>
+        <p class="di-desc">Single unified agent (Solution A) for operational intelligence and multi-agent specialist system (Solution B) for strategic reporting — both deployed on shared infrastructure with full API documentation.</p>
+      </div>
+      <div class="deliverable-item">
+        <span class="di-icon">📊</span>
+        <span class="di-phase">User Interface</span>
+        <div class="di-title">Interactive Dashboard</div>
+        <p class="di-desc">Innovation Radar visualisation, PESTEL signal browser, country filter, time horizon controls, and signal confidence overlays. Exportable to PDF, DOCX, and PPTX for internal distribution.</p>
+      </div>
+      <div class="deliverable-item">
+        <span class="di-icon">📑</span>
+        <span class="di-phase">Strategic Frameworks</span>
+        <div class="di-title">Auto-Generated Strategy Outputs</div>
+        <p class="di-desc">SWOT, Porter's Five Forces, NOISE Analysis, and SOAR frameworks — all automatically populated from live PESTEL signals. Templates customised to Company A's strategic priorities and target markets.</p>
+      </div>
+      <div class="deliverable-item">
+        <span class="di-icon">🎯</span>
+        <span class="di-phase">Final Presentation</span>
+        <div class="di-title">Board Presentation &amp; Recommendations</div>
+        <p class="di-desc">Comprehensive findings presentation including key European intelligence insights, farmer behavioral forecasts, technology adoption curves, and prioritised strategic recommendations for R&amp;D, marketing, and M&amp;A teams at Company A.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ TIMELINE ═══ -->
+<section id="timeline">
+  <div class="section-inner">
+    <div class="section-label">07 — Implementation Roadmap</div>
+    <h2 class="section-title fade-up">Six phases. Ten weeks.</h2>
+    <p class="section-lead fade-up">A phased delivery designed to generate usable intelligence from week three onwards, with full platform capability online by week ten.</p>
+
+    <div class="timeline-track fade-up">
+      <div class="timeline-line"></div>
+      <div class="timeline-phases">
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 01</span>
+          <div class="timeline-phase-title">Data Collection &amp; Source Mapping</div>
+          <div class="timeline-phase-weeks">Weeks 1–2</div>
+        </div>
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 02</span>
+          <div class="timeline-phase-title">NLP Pipeline &amp; Signal Enrichment</div>
+          <div class="timeline-phase-weeks">Weeks 2–4</div>
+        </div>
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 03</span>
+          <div class="timeline-phase-title">Solution A — Unified Agent Build</div>
+          <div class="timeline-phase-weeks">Weeks 4–6</div>
+        </div>
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 04</span>
+          <div class="timeline-phase-title">Solution B — Six-Agent Architecture</div>
+          <div class="timeline-phase-weeks">Weeks 6–8</div>
+        </div>
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 05</span>
+          <div class="timeline-phase-title">Dashboard &amp; Visualisation Layer</div>
+          <div class="timeline-phase-weeks">Weeks 8–9</div>
+        </div>
+        <div class="timeline-phase">
+          <span class="timeline-phase-num">Phase 06</span>
+          <div class="timeline-phase-title">UAT, Handover &amp; Board Presentation</div>
+          <div class="timeline-phase-weeks">Week 10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase detail cards -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.08); margin-top: 3rem;" class="fade-up">
+      <div style="background: rgba(255,255,255,0.04); padding: 1.5rem;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--wheat); text-transform: uppercase; margin-bottom: 0.6rem;">Phases 1–2 · Weeks 1–4</div>
+        <div style="font-size: 0.85rem; font-weight: 600; color: var(--cream); margin-bottom: 0.5rem;">Data Foundation &amp; NLP</div>
+        <p style="font-size: 0.78rem; color: rgba(245,240,232,0.5); line-height: 1.6;">Identify and connect all 68+ European data sources. Build ingestion pipeline and quality scoring framework. Deploy NLP models for entity recognition, sentiment scoring, and topic clustering. Build vector embeddings for semantic search.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.04); padding: 1.5rem;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--wheat); text-transform: uppercase; margin-bottom: 0.6rem;">Phases 3–4 · Weeks 4–8</div>
+        <div style="font-size: 0.85rem; font-weight: 600; color: var(--cream); margin-bottom: 0.5rem;">Agent Development</div>
+        <p style="font-size: 0.78rem; color: rgba(245,240,232,0.5); line-height: 1.6;">Build and test Solution A (Single Unified Agent) first — this is the primary deliverable. Then lay the architectural foundation for Solution B (Six-Agent PESTEL System), with the orchestration framework and first two specialist agents completed within the 10-week window.</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.04); padding: 1.5rem;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--wheat); text-transform: uppercase; margin-bottom: 0.6rem;">Phases 5–6 · Weeks 8–10</div>
+        <div style="font-size: 0.85rem; font-weight: 600; color: var(--cream); margin-bottom: 0.5rem;">Dashboard &amp; Delivery</div>
+        <p style="font-size: 0.78rem; color: rgba(245,240,232,0.5); line-height: 1.6;">Dashboard integration and visualisation layer. User acceptance testing and knowledge transfer to Company A teams. Final board presentation with live platform demonstration, key findings, and strategic recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">Agri<span>Nova</span></div>
+  <div class="footer-meta">
+    Prepared exclusively for Company A<br>
+    European Agricultural Machinery Division<br>
+    February 2026 · 10-Week Delivery · Strictly Confidential
+  </div>
+</footer>
+
+<script>
+  // ─── Progress bar ───
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (window.scrollY / total) * 100;
+    document.getElementById('progressBar').style.width = progress + '%';
+  });
+
+  // ─── Fade-up observer ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // stagger siblings
+        const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+        let delay = 0;
+        siblings.forEach(sib => {
+          if (!sib.classList.contains('visible')) {
+            sib.style.transitionDelay = delay + 'ms';
+            delay += 80;
+          }
+        });
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ─── Approach tabs ───
+  function switchApproach(id) {
+    document.querySelectorAll('.approach-tab').forEach((tab, i) => {
+      tab.classList.toggle('active', (i === 0 && id === 'a1') || (i === 1 && id === 'a2'));
+    });
+    document.querySelectorAll('.approach-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  // ─── Journey tabs ───
+  function switchJourney(id, clickedTab) {
+    document.querySelectorAll('.journey-tab').forEach(t => t.classList.remove('active'));
+    clickedTab.classList.add('active');
+    document.querySelectorAll('.journey-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('journey-' + id).classList.add('active');
+  }
+</script>
+</body>
+</html>
